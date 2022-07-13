@@ -21,19 +21,19 @@ public class CurrencyController {
     private final StatService statService;
 
     @GetMapping("/getCurrencies")
-    public List<ValuteCursOnDate> getValuteCursOnDate() throws Exception{
+    public List<ValuteCursOnDate> getValuteCursOnDate() throws Exception {
         return centralRussianBankService.getCurrenciesFromCbr();
     }
 
     @GetMapping("/getIncomeStats")
     @ApiOperation(value = "Get number of incomes that are greater then certain amount")
-    public int getStatsForIncomesGreaterThen (@RequestParam(value = "amount") BigDecimal amount) {
+    public int getStatsForIncomesGreaterThen(@RequestParam(value = "amount") BigDecimal amount) {
         return statService.getCountOfIncomesGreaterThen(amount);
     }
 
     @GetMapping("/getSpendStats")
     @ApiOperation(value = "Get the list of spends greater then certain amount")
-    public List<Spend> getSpendsGreaterThen (@RequestParam(value = "amount") BigDecimal amount) {
+    public List<Spend> getSpendsGreaterThen(@RequestParam(value = "amount") BigDecimal amount) {
         return statService.getSpendsGreaterThen(amount);
     }
 }

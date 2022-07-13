@@ -21,15 +21,19 @@ class FinanceServiceTest {
 
     @InjectMocks
     FinanceService financeService;
-    
+
     @Test
-    public void testAddFinanceOperation(){
+    public void testAddIncomeOperation() {
         String price = "150.8";
         String message = financeService.addFinanceOperation("/addincome", price, 500L);
         assertEquals("Income in amount " + price + " has been successfully added", message);
 
-        price = "200.7";
-        message = financeService.addFinanceOperation("/addspend", price, 500L);
+    }
+
+    @Test
+    public void testAddSpendOperation() {
+        String price = "200.7";
+        String message = financeService.addFinanceOperation("/addspend", price, 500L);
         assertEquals("Spend in amount " + price + " has been successfully added", message);
     }
 

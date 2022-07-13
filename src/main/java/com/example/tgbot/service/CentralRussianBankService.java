@@ -17,7 +17,6 @@ import java.util.List;
 public class CentralRussianBankService extends WebServiceTemplate {
 
     @Value(value = "${cbr.api.url}")
-    //@Value(value = "http://www.cbr.ru/dailyinfowebserv/dailyinfo.asmx?wsdl")
     private String cbrApiUrl;
 
     public List<ValuteCursOnDate> getCurrenciesFromCbr() throws DatatypeConfigurationException {
@@ -37,5 +36,13 @@ public class CentralRussianBankService extends WebServiceTemplate {
         courses.forEach(course -> course.setName(course.getName().trim()));
 
         return courses;
+    }
+
+    public ValuteCursOnDate getCurrencyRate(String currencyCode) throws DatatypeConfigurationException {
+        return getCurrenciesFromCbr()
+                .stream()
+                .filter(currency -> currency.getChCode().equals(currencyCode))
+                .findFirst()
+                .get();
     }
 }
